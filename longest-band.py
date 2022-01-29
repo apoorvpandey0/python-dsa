@@ -1,11 +1,13 @@
 """
     Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
-    https://leetcode.com/problems/longest-consecutive-sequence/
+    Example:    Input: nums = [100,4,200,1,3,2] | Output: 4
+                Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+    Link: https://leetcode.com/problems/longest-consecutive-sequence/
 """
 
 
 class Solution:
-    # Time O(log(n))
+    # Time O(n)
     # Runtime: 188 ms, faster than 86.40% of Python3 online submissions for Longest Consecutive Sequence.
     def longestConsecutive(self, nums):
         longest_streak = 0
@@ -28,6 +30,7 @@ class Solution:
         return longest_streak
 
     # Brute Force approach
+    # This isin't brute forced solution
     # Time O(n2)
     # Runtime: 2724 ms, faster than 7.73% of Python3 online submissions for Longest Consecutive Sequence.
 
@@ -46,7 +49,6 @@ class Solution:
             if counter > answer:
                 answer = counter
         return answer
-
 
 
 print(Solution().longestConsecutive([100, 4, 200, 0, 1, 3, 2]))  # 5
