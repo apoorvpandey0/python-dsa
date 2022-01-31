@@ -44,6 +44,7 @@ def me2(nums):
 
 # Solution 3:
 # middlemost element should always be in majority
+# Time: O(n log n)
 # Runtime: 176 ms, faster than 60.15% of Python3 online submissions for Majority Element.
 def me3(nums):
     nums.sort()
