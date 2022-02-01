@@ -1,3 +1,9 @@
+"""
+    Find the kth largest element in the array
+    Desc: In a sorted array return athe kth element from last 
+    Link: https://leetcode.com/problems/kth-largest-element-in-an-array/
+"""
+
 import heapq
 
 
