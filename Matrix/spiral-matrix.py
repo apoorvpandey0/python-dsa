@@ -98,7 +98,8 @@ print(spiral2([[1]]))
 
 # Solution 3:
 # Removing Rows and columns method
-def spiral3(matrix):
+# Runtime: 46 ms, faster than 34.16% of Python3 online submissions for Spiral Matrix.
+def spiral3(mat):
     """
         remove the top row
         remove the right row
@@ -106,27 +107,28 @@ def spiral3(matrix):
         remove the left row
         and repeat until the matrix is empty.
         when you remove a row, append all it's element in a array and that's the answer.
-        https://leetcode.com/problems/spiral-matrix/discuss/1557262/Python-or-faster-than-97-or-short-and-simple-solution-(with-comments)
     """
     result = list()
-    while len(matrix) > 0:
+    # Using try catch here is critical!
+    while len(mat) > 0:
         try:
-            result += matrix.pop(0)  #remove the first nested list (top row)
-            result += [x.pop(-1) for x in matrix
-                       ]  #remove every last element of the lists (right row)
-            result += matrix.pop(
-                -1)[::
-                    -1]  #remove last nested list in reverse order (bottom row)
-            result += [
-                x.pop(0) for x in matrix
-            ][::-1]  #remove every last element of the lists (left row)
+            #remove the first nested list (top row)
+            result += mat.pop(0)
+            #remove every last element of the lists (right row)
+            result += [col.pop(-1) for col in mat]
+            #remove last nested list in reverse order (bottom row)
+            result += mat.pop(-1)[::-1]
+            #remove every last element of the lists (left row)
+            result += [col.pop(0) for col in mat][::-1]
         except:
-            break  #if at any moment the matrix is empty, break the loop and return the result array
+            #if at any moment the matrix is empty, break the loop and return the result array
+            break
     return result
 
 
 # Solution 4:
 # God Mode
+# Using recursion
 def spiral4(matrix):
     """
         https://leetcode.com/problems/spiral-matrix/discuss/20571/1-liner-in-Python-%2B-Ruby
@@ -134,4 +136,22 @@ def spiral4(matrix):
     return matrix and [*matrix.pop(0)] + spiral4([*zip(*matrix)][::-1])
 
 
+# Solution 5:
+def spiral5(matrix):
+    """
+        1 - pop the first row and store it in result
+        2 - rotate the remaining matrix
+        3 - jump to 1st step.
+    """
+    result = []
+    while matrix:
+        result += matrix.pop(0)
+        matrix = (list(zip(*matrix)))[::-1]
+    return result
+
+
 # print(spiral([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
+# print(spiral3([[7], [9], [6]]))
+# print(spiral3([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]))
+# print(spiral3([[2, 3, 4], [5, 6, 7], [8, 9, 10], [11, 12, 13], [14, 15, 16]]))
+# print(spiral3([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
