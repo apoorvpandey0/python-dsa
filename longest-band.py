@@ -8,6 +8,8 @@
 
 class Solution:
     # Time O(n)
+    # As for loop will take n steps then x+y+z+... steps for each head element which could be max n
+    # For most elements its always going to be O(1) thats why final time: O(n)
     # Runtime: 188 ms, faster than 86.40% of Python3 online submissions for Longest Consecutive Sequence.
     def longestConsecutive(self, nums):
         longest_streak = 0
