@@ -131,7 +131,7 @@ def spiral4(matrix):
     """
         https://leetcode.com/problems/spiral-matrix/discuss/20571/1-liner-in-Python-%2B-Ruby
     """
-    return matrix and [*matrix.pop(0)] + spiral3([*zip(*matrix)][::-1])
+    return matrix and [*matrix.pop(0)] + spiral4([*zip(*matrix)][::-1])
 
 
 # print(spiral([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
