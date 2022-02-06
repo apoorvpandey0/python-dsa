@@ -1,58 +1,30 @@
-# Solution 1:
-# My copy of solution 2
+# Solution 2:
+# O(H*W) time: we must traverse all elements in the matrix to be able to return them
+# O(H*W) space: due to the size of the output variable (which is as large as the input matrix).
+# If you choose not to count the output variable then you can call it O(1)
 # Runtime: 50 ms, faster than 24.62% of Python3 online submissions for Spiral Matrix.
 def spiral(matrix):
-    if not matrix:
-        return []
-
-    answer = []
-    rows = len(matrix)
-    cols = len(matrix[0])
-
-    left = 0
-    right = cols - 1
-    top = 0
-    bottom = rows - 1
-
-    while left < right and top < bottom:
-        for col in range(left, right):
-            answer.append(matrix[top][col])
-        # print(answer)
-
-        for row in range(top, bottom):
-            answer.append(matrix[row][right])
-        # print(answer)
-        for col in range(right, left, -1):
-            answer.append(matrix[bottom][col])
-        # print(answer)
-        for row in range(bottom, top, -1):
-            answer.append(matrix[row][left])
-        # print(answer)
-        left += 1
-        right -= 1
-        top += 1
-        bottom -= 1
-
-    # To cover solution 2's edge case
-    if len(answer) < rows * cols:
-        for row in range(top, bottom + 1):
-            for col in range(left, right + 1):
-                answer.append(matrix[row][col])
-
-    return answer
-
-
-# print(spiral([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
-# print(spiral([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
-print(spiral([[1]]))
-
-
-# Solution 2:
-# Cleaner approach
-# Desc: The code speaks for itself
-def spiral2(matrix):
     """
-        https://leetcode.com/problems/spiral-matrix/discuss/394774/python-3-solution-for-spiral-matrix-one-of-the-most-easiest-you-will-never-forget/1026252
+        Examples for the edge cases:
+            Example A: row remains in middle
+            [1,2,3,4]
+            [5,6,7,8]
+            [9,0,1,2]
+            The bottom nested for loops will traverse (in-order): 6,7
+
+            Example B: Single element remains in middle
+            [1,2,3]
+            [4,5,6]
+            [7,8,9]
+            The bottom nested for loops will traverse (in-order): 5
+
+            Example C: Column remains in middle
+            [1,2,3]
+            [4,5,6]
+            [7,8,9]
+            [0,1,2]
+            The bottom nested for loops will traverse (in-order): 5,8
+        Link: https://leetcode.com/problems/spiral-matrix/discuss/394774/python-3-solution-for-spiral-matrix-one-of-the-most-easiest-you-will-never-forget/1026252
     """
     height = len(matrix)
     width = len(matrix[0])
@@ -92,8 +64,8 @@ def spiral2(matrix):
     return ans
 
 
-# print(spiral2([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
-print(spiral2([[1]]))
+# print(spiral([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+# print(spiral([[1]]))
 
 
 # Solution 3:
