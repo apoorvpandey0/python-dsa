@@ -8,7 +8,15 @@
 # Time: O(n) | Space: O(1)
 # Runtime: 40 ms, faster than 64.26% of Python3 online submissions for Reverse Linked List.
 def reverse(head):
-    # 1 -> 2 -> 3 -> None
+    """
+    Visual aid:
+          next
+           ↓
+None  1 -> 2 -> 3 -> None
+      ↑    ↑   
+     prev curr
+
+     """
     prev = None
     curr = head
     while curr:
