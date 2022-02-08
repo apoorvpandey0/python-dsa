@@ -32,11 +32,16 @@ class Solution:
 
     # Solution 2:
     # Tortoise and hare algorithm
+    # Fast will eventually catch up with slow if in a loop
+    # Else fast would be none at some point throwing an error
     # O(n) time and O(1) space.
     # Runtime: 80 ms, faster than 39% of Python3 online submissions for Linked List Cycle.
-    # The "trick" is to not check all the time whether we have reached the end but to handle it via an exception.
-    #  "Easier to ask for forgiveness than permission."
     def hasCycle2(self, head):
+        """
+            The "trick" is to not check all the time whether we have reached the end but to handle it via an exception.
+            "Easier to ask for forgiveness than permission."
+            Try it for 1->2->3->4->2
+        """
         try:
             slow = head
             fast = head.next
