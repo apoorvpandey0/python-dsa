@@ -36,6 +36,7 @@ class Solution:
     # Else fast would be none at some point throwing an error
     # O(n) time and O(1) space.
     # Runtime: 80 ms, faster than 39% of Python3 online submissions for Linked List Cycle.
+    # The reason why fast will catch up in N steps: https://youtu.be/gBTe7lFR3vc?t=357
     def hasCycle2(self, head):
         """
             The "trick" is to not check all the time whether we have reached the end but to handle it via an exception.

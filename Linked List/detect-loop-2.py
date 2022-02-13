@@ -34,3 +34,18 @@ class Solution:
     # Solution 2:
     # Tortoise and hare algorithm
     # O(n) time and O(1) space.
+    # Runtime: 49 ms, faster than 83.84% of Python3 online submissions for Linked List Cycle II.
+    def detect(head):
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            # print(slow.val,fast.val)
+            if slow == fast:
+                slow = head
+                while slow != fast:
+                    slow = slow.next
+                    fast = fast.next
+                return slow
+        return None
