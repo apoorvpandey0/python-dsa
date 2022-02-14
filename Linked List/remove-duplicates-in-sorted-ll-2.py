@@ -13,6 +13,7 @@ class ListNode:
 
 
 # Solution:
+# Time: O(n) | Space: O(1)
 # Runtime: 68 ms, faster than 26.53% of Python3 online submissions for Remove Duplicates from Sorted List II.
 # Memory Usage: 14 MB, less than 80.11% of Python3 online submissions for Remove Duplicates from Sorted List II.
 def deleteDuplicates(head):
