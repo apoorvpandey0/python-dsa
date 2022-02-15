@@ -1,5 +1,7 @@
 """
     169. Majority Element
+    Desc: The majority element is the element that appears more than ⌊n / 2⌋ times.
+          You may assume that the majority element always exists in the array.
     Link: https://leetcode.com/problems/majority-element/
 """
 
@@ -18,7 +20,7 @@ def me(nums):
 # Solution 2:
 # Using Moores Voting algorithm
 # Time: O(n) | Space: O(1)
-# Runtime: 477 ms, faster than 5.02% of Python3 online submissions for Majority Element.
+# Runtime: 192 ms, faster than 59.39% of Python3 online submissions for Majority Element.
 def me2(nums):
     candidate_index, count = 0, 1
 
@@ -33,6 +35,9 @@ def me2(nums):
             candidate_index = i
             count = 1
 
+    # Since we can assume in this question that there will always be a majority element
+    # We may skip this step
+    # Verification is done when there is no majority element ex: [1,2,1,3,1,4,5]
     # Verifying the candidate element
     count = 0
     for i in nums:
