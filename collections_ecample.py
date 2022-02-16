@@ -2,9 +2,9 @@ import collections as c
 from typing import ChainMap
 
 # Named tuple is a way to create a new data type with a name.
-nt = c.namedtuple('course',['name','technology','duration'])
-course1 = nt('Python for Beginners','Python',3)
-course2 = nt._make(['Data Science','Python',3])
+nt = c.namedtuple('course', ['name', 'technology', 'duration'])
+course1 = nt('Python for Beginners', 'Python', 3)
+course2 = nt._make(['Data Science', 'Python', 3])
 
 # print(course1)
 # print(course1.name)
@@ -14,7 +14,7 @@ course2 = nt._make(['Data Science','Python',3])
 
 # Deque in Python is a double-ended queue.
 # It is optimized for fast appends and pops from either end.
-dq = c.deque(["Mon","Tue","Wed"])
+dq = c.deque(["Mon", "Tue", "Wed"])
 # print (dq)
 
 # Append to the right
@@ -45,8 +45,19 @@ dq.reverse()
 # ----------------------------------------------------------------------
 
 # Chainmap in Python is a class that combines multiple mappings/ sets into one list.
-a = {'a':1,'b':2}
-b = {'c':3,'d':4}
-c = {'e':5,'f':6}
-cm = ChainMap(a,b,c)
+a = {'a': 1, 'b': 2}
+b = {'c': 3, 'd': 4}
+d = {'e': 5, 'f': 6}
+cm = ChainMap(a, b, d)
 # print(cm)
+
+# -------------------------------------------------------------------
+
+# Ordered Dictionary in Python is a class that maintains the order of the keys.
+
+od = c.OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+print("Ordered Dictionary: ", a)
+od.move_to_end('a')
+print(a)
+od.popitem('b')
+print(a)
