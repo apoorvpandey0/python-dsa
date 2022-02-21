@@ -1,9 +1,11 @@
 """
     Merge sort Linked list
     Link: https://leetcode.com/problems/sort-list/
+    Good exp: https://leetcode.com/problems/sort-list/discuss/892759/Python-O(n-log-n-log-n)-merge-sort-explained
 """
 
 
+# Merge sort Top down approach
 # Time: O(nlog(n)) | Space: Some space used for recursion stack
 # Runtime: 512 ms, faster than 48.07% of Python3 online submissions for Sort List.
 # Memory Usage: 54.3 MB, less than 5.04% of Python3 online submissions for Sort List.
