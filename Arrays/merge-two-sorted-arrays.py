@@ -1,11 +1,15 @@
 """
     Merge two sorted arrays
+    Example: 
+        Array1 = [1,3,5,0,0,0]
+        Array2 = [2,4,6]
     Link: https://leetcode.com/problems/merge-sorted-array/
 """
 
 
 # Solution 1:
 # Time: O(n) | Space O(1)
+# This Soln specifically works when there are extra zeroes given at the end
 # Runtime: 46 ms, faster than 49.40% of Python3 online submissions for Merge Sorted Array.
 def merge(nums1, nums2):
     """
@@ -36,7 +40,8 @@ def merge(nums1, nums2):
 
 
 # Solution 2:
-# Not accepted on leetcode
+# Not accepted on leetcode due to extra space usage
+# Hoever unlike soln1 this is a general array merging solution
 # Time: 0(n)  | Space: O(m+n)
 def merge2(nums1, nums2):
     m = len(nums1)

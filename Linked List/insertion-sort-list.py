@@ -45,6 +45,7 @@ def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
 # Solution 2:
 # Actual node insertion method
 # Time: O(n^2) | Space: O(1)
+# This soln does not works on Leetcode sort-list question - TLE
 # Runtime: 175 ms, faster than 87.37% of Python3 online submissions for Insertion Sort List.
 # Link: https://leetcode.com/problems/insertion-sort-list/discuss/1176552/Python3-188ms-Solution-(explanation-with-visualization)
 def insertionSort(head):
