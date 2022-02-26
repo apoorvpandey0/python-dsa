@@ -36,3 +36,26 @@ def plusOne(nums):
 
             
     return nums
+
+# Solution 2: Cleaner code
+# we employ 3 variables:
+# s - the sum between the digit[i], res and mem
+# res = s % 10 ( initially 1, because we need to add one to the last digit)
+# mem = s // 10
+# we iterate backwards on the digits and we add update the digits array until mem becomes 0 ( we don't need to add anything anymore)
+# if we have updated all the digits and mem != 0, we need to add it to the array as well ( e.g. input: digits = [9], output = [1, 0] )
+class Solution:
+    def plusOne(digits):
+        n = len(digits)
+        res = 1
+        mem = 0 
+        for i in range(n - 1, -1, -1):
+            s = digits[i] + res + mem
+            res = s % 10
+            mem = s // 10
+            digits[i] = res
+            if mem == 0:
+                break
+        if mem != 0:
+            digits = [mem] + digits
+        return digits

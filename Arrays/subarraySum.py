@@ -30,7 +30,7 @@ class Solution:
             # start from left+1 if arr[i] == k case is not allowed
             for right in range(left, len(nums)):
 
-                # print(left,right, ps[right] - (ps[left-1] if left!=0 else 0))
+                # PS[right] - PS[left] with edge case handling
                 if ps[right] - (0 if left == 0 else ps[left - 1]) == k:
 
                     counter += 1
@@ -38,6 +38,12 @@ class Solution:
 
     # Solution 2:
     # Prefix sum with Dictionary and Single pass method
+    # Algorithm: 
+    # 1. Create a dictionary with key as sum and value as count of subarrays with that sum
+    # 2. Iterate over the array and keep adding the current sum to the dictionary
+    # 3. If the sum is in the dictionary, then increment the count
+    # 3. If the sum -k is in dict, ie. the sum has been seen before => then increment the count
+    # 4. Return the count
     # Time O(n) | 244ms fastrer than 93% of Python submissions
     def subarraySum(self, nums, k):
         dict = {}
