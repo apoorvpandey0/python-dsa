@@ -5,6 +5,7 @@
 """
 
 from typing import List, Optional
+from collections import deque
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -12,7 +13,9 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-    
+
+
+# Traversals of a binary tree
 class PreOrderTraversal:
     """
         Preorder traversal of a binary tree
@@ -112,3 +115,52 @@ class PostOrderTraversal:
         while s2:
             res.append(s2.pop())
         return res
+
+class LevelOrderTraversal:
+    # Time: O(n) | Space: O(n)
+    # Runtime: 59 ms, faster than 29.68% of Python3 online submissions for Binary Tree Level Order Traversal.
+    # Memory Usage: 14.3 MB, less than 44.12% of Python3 online submissions for Binary Tree Level Order Traversal.
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """
+            Link: https://leetcode.com/problems/binary-tree-level-order-traversal/
+        """
+        queue = deque()
+        queue.append(root)
+        result = []
+
+        # This loop iterates over each level of the tree
+        # The queue on each iteration of while loop contains all elements of one level
+        while queue:
+            level = []
+            
+            # Algorithm:
+            # Iterate the entire level L -> R
+            # Add the next level elements in the queue 
+            # And add the current level elements to level list            
+            for _ in range(len(queue)):
+                # Explaination len(queue): 
+                """
+                    Length of the queue denotes number of elements in the current level
+                    n = 3
+                    for i in range(n):
+                        print(i)
+                        n+=1
+                    The output of this code is 0,1,2 and not an infinite loop
+                """
+                
+                curr = queue.popleft()
+                
+                if not curr: continue
+                
+                if curr.left:
+                    queue.append(curr.left)
+                
+                if curr.right:
+                    queue.append(curr.right)
+                
+                level.append(curr.val)         
+            
+            # To avoid the single case when the tree is empty we use if
+            # else always at least one element would be there in a level
+            if level: result.append(level)
+        return result
