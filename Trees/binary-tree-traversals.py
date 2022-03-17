@@ -5,7 +5,7 @@
 """
 
 from typing import List, Optional
-from collections import deque
+from collections import deque,defaultdict
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -43,6 +43,7 @@ class PreOrderTraversal:
             curr = stack.pop()
             if curr:
                 res.append(curr.val)
+                # The order of appending child is R,L because stack follows LIFO
                 stack.append(curr.right)
                 stack.append(curr.left)
         return res
@@ -98,9 +99,19 @@ class PostOrderTraversal:
         pot(root)
         return ans
     
+    # Using 2 Stack
     # Runtime: 29 ms, faster than 87.89% of Python3 online submissions for Binary Tree Postorder Traversal.
     # Memory Usage: 13.9 MB, less than 80.66% of Python3 online submissions for Binary Tree Postorder Traversal.
     def iterative(self, root: Optional[TreeNode]) -> List[int]:
+        """
+            1. Push the root node to the stack
+            2. While the stack is not empty
+                1. Pop the top node from the stack
+                2. Push the node to the stack
+                3. Push the left child of the popped node to the stack
+                4. Push the right child of the popped node to the stack
+            Stack 2 will contain the post order traversal
+        """
         s1 = [root]
         s2 = []
         res = []
@@ -115,6 +126,71 @@ class PostOrderTraversal:
         while s2:
             res.append(s2.pop())
         return res
+    
+    # Using 1 Stacks
+    def iterative2(self, root: TreeNode) -> List[int]:
+        ans, s = [], []
+        
+        curr = root
+        while curr or s:
+            while curr:
+                s.append((curr, curr.right))
+                curr = curr.left
+            
+            p = s.pop()
+            
+            # right child is none for popped node - it means we have either
+            # explored right subtree or it never existed. In both cases,
+            # we can simply visit popped node i.e. add its val to ans list
+            if not p[1]:
+                ans.append(p[0].val)
+            else:
+                # Add popped node back in stack with its right child as None.
+                # None right child denotes that when we pop this node in future,
+                # we already explored its right subtree as we are going to do
+                # that by setting curr to right child in the next step.
+                s.append((p[0], None))
+                
+                # Explore right subtree
+                curr = p[1]
+        return ans
+
+    # Pythonic solution
+    def iterative3(self, root: TreeNode) -> List[int]:
+        stack, result = [None, root], []
+
+        while cur := stack.pop():
+            result.append(cur.val)
+            stack.extend(x for x in (cur.left, cur.right) if x)
+
+        return result[::-1]
+
+class AllThreeTraversals:
+    # It works!
+    # Based on number of counts each node is visited concept
+    def allinOneTraversals(self, root: TreeNode) -> List[List[int]]:
+        ans = []
+        count = defaultdict(int)
+        pre = []
+        ino = []
+        pos = []
+        def pot(root):
+            if root == None:
+                return
+            count[root]+=1
+            if count[root]==1: pre.append(root.val)
+            ans.append(root.val)
+            
+            pot(root.left)
+            count[root]+=1
+            if count[root]==2: ino.append(root.val)
+                
+            pot(root.right)
+            count[root]+=1
+            if count[root]==3: pos.append(root.val)
+        pot(root)
+        # print(count.values())
+        return ino
 
 class LevelOrderTraversal:
     # Time: O(n) | Space: O(n)

@@ -11,8 +11,18 @@
 #         self.left = left
 #         self.right = right
 
-class FindHeightOfBinTree:
+"""
+    Consider a tree with only root node.
+    We know heigh of left and riht subtree would be zero and the height of tree is 1.
+    So the recursive equations turns out to be 1 + max(height(left), height(right)) 
+"""
 
+class FindHeightOfBinTree:
+    # To solve this que we can use two approaches
+    # 1. Use level order traversal
+    # 2. Use recursion
+
+    # The recursive equation is 1 + max(left subtree,right subtree)
     # Runtime: 52 ms, faster than 64.61% of Python3 online submissions for Maximum Depth of Binary Tree.
     # Memory Usage: 16.4 MB, less than 22.84% of Python3 online submissions for Maximum Depth of Binary Tree.
     def recursive(self, root) -> int:
