@@ -240,3 +240,134 @@ class LevelOrderTraversal:
             # else always at least one element would be there in a level
             if level: result.append(level)
         return result
+
+class ZigZagLevelOrderTraversal:
+    # Solution 1:
+    # Simply reverse the list at the end of each level
+    # Not actually a zigzag traversal
+    # Runtime: 52 ms, faster than 38.37% of Python3 online submissions for Binary Tree Zigzag Level Order Traversal.
+    # Memory Usage: 14.1 MB, less than 68.45% of Python3 online submissions for Binary Tree Zigzag Level Order Traversal.
+    def soln1(self, root: Optional[TreeNode]) -> List[List[int]]:
+        queue = deque()
+        queue.append(root)
+        result = []
+        while queue:
+            level = []
+            for i in range(len(queue)):
+                curr = queue.popleft()
+                if not curr: continue
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
+                level.append(curr.val)         
+            if level: result.append(level) if len(result)%2==0 else result.append(reversed(level))
+        return result
+            
+    # Solution 2:
+    # My confusing solution 
+    # Runtime: 47 ms, faster than 52.03% of Python3 online submissions for Binary Tree Zigzag Level Order Traversal.
+    # Memory Usage: 14.3 MB, less than 30.77% of Python3 online submissions for Binary Tree Zigzag Level Order Traversal.
+    def soln2(self, root: Optional[TreeNode]) -> List[List[int]]:
+        queue = deque()
+        queue.append(root)
+        result = []
+        while queue:
+            level = []
+            for i in range(len(queue)):
+                if len(result)%2!=0:
+                    curr = queue.popleft()
+                else:
+                    curr = queue.pop()
+                if not curr: continue
+                if len(result)%2!=0:
+                    if curr.right:queue.append(curr.right)
+                    if curr.left: queue.append(curr.left)
+                if len(result)%2==0:
+                    if curr.left: queue.appendleft(curr.left)
+                    if curr.right:queue.appendleft(curr.right)
+                level.append(curr.val)         
+            # for i in queue:
+            #     print(i.val,end=' ')
+            # print(level)
+            if level: result.append(level)
+        return result
+
+    # Solution 3:
+    # Cleaner code solution
+    # Runtime: 38 ms, faster than 72.87% of Python3 online submissions for Binary Tree Zigzag Level Order Traversal.
+    # Memory Usage: 14.1 MB, less than 67.80% of Python3 online submissions for Binary Tree Zigzag Level Order Traversal.
+    def soln3(self, root: Optional[TreeNode]) -> List[List[int]]:
+        q = deque([root]) if root else []
+        nex = deque([])
+        res = []
+        
+        while q:
+            res.append([i.val for i in q])
+            
+            while q:
+                x = q.pop()
+                if len(res) % 2 == 0:
+                    if x.left: nex.append(x.left)
+                    if x.right: nex.append(x.right)
+                else:
+                    if x.right: nex.append(x.right)
+                    if x.left: nex.append(x.left)
+            
+            q = nex
+            nex = deque([])
+                
+        return res
+
+class BoundaryOrderTraversal:
+    '''
+    Link: https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1#
+    class Node:
+        def __init__(self, val):
+            self.right = None
+            self.data = val
+            self.left = None
+    LeetCode format testacases:
+    # [6, 4, 9, null ,10, 4, 5, null ,10 ,1 ,9, null, 8, 6 ,1 ,null ,5, 9 ,3 ,null 6, 8, 7 ,null ,4, 4]
+    # [4, 10, null, 5, 5, null, 6, 7, null ,8, 8, null, 8 ,11, null, 3, 4 ,null ,1, 3, null ,8 ,6 ,null ,11 ,11 ,null ,5, 8]
+    '''
+    def getLeaves(self,node):
+        ans = []
+        def pot(node):
+            if node == None: return
+            if not node.left and not node.right: ans.append(node.data)
+            pot(node.left)
+            pot(node.right)
+        pot(node)
+        return ans
+   
+    def getLeft(self,node):
+        ans = []
+        curr = node
+        while curr:
+            if curr.left or curr.right: ans.append(curr.data)
+            if curr.left: curr = curr.left
+            else: curr = curr.right
+        return ans
+    
+    def getRight(self,node):
+        ans = []
+        curr = node
+        while curr:
+            if curr.left or curr.right: ans.append(curr.data)
+            if curr.right: curr = curr.right
+            else: curr = curr.left
+        return ans[::-1]
+        
+    def printBoundaryView(self, root):
+        if not root: return # []
+        if not root.left and not root.right: return [root.data] # [1]
+
+        res = [root.data]
+        if root.left: res.extend(self.getLeft(root)[1:])
+        res.extend(self.getLeaves(root))
+        if root.right: res.extend(self.getRight(root)[:-1])
+        return res
+
+
+
