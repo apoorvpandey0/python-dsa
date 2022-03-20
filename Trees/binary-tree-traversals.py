@@ -369,5 +369,40 @@ class BoundaryOrderTraversal:
         if root.right: res.extend(self.getRight(root)[:-1])
         return res
 
+from collections import defaultdict
+class VerticalOrderTraversal:
+    # Runtime: 43 ms, faster than 65.74% of Python3 online submissions for Vertical Order Traversal of a Binary Tree.
+    # Memory Usage: 14.2 MB, less than 79.54% of Python3 online submissions for Vertical Order Traversal of a Binary Tree.
+    def dfs_approach(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """
+            1. Divide the tree in rows and columns
+            2. Our ds looks like this {'col_number':'{'row_number':list_of_nodes}'}
+        """
+        ds = defaultdict(lambda: defaultdict(list))
 
+        # res is a list of lists of all columns in the tree
+        res = []
 
+        # Goto each node and add the value to its respective column and row position in the ds
+        # We are using Pre order traversal for traversing the tree
+        def pot(node,row,col):
+            if not node: return
+            ds[col][row].append(node.val)
+            pot(node.left,row+1,col-1)
+            pot(node.right,row+1,col+1)
+        pot(root,0,0)
+        
+        # Now we have our ds with all the values in the tree
+        # We are going to sort the ds based on the column number so leftmost column will be first
+        for key1,value1 in sorted(ds.items()):
+
+            # This list will contain all elements in a column
+            column = []
+
+            # We are going to sort the ds[col]  based on the row number so topmost row will be first
+            for key2,value2 in sorted(value1.items()):
+                # Since value 2 is a list and contains elements at same row,rol 
+                # We have to sort the elements at same row,col index and append them to the column list
+                column.extend(sorted(value2))
+            res.append(column)
+        return res
