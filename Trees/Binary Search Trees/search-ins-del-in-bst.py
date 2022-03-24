@@ -80,3 +80,55 @@ class InsertBST:
                 insert(node.left,val)
         insert(root,val)
         return root
+    
+class DeleteBST:
+    """
+        Best explaination: https://youtu.be/a-53QSxovUA
+        Runtime: 110 ms, faster than 45.52% of Python3 online submissions for Delete Node in a BST.
+        Memory Usage: 18.4 MB, less than 34.97% of Python3 online submissions for Delete Node in a BST
+    """
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        # Three possible situations for the key node
+        # 1. no children
+        # 2. only has one child
+        # 3. has both left and right child
+            
+        if not root:
+            return None
+        
+        if root.val == key:
+            # Two if conditions cover both case 1 and 2
+            if not root.left:
+                # If left child is None assign right child to previous node
+                return root.right
+
+            if not root.right:
+                # If right child is None assign left child to previous node
+                return root.left
+            
+            # Case 3: get the minimum node in right child tree
+            minNode = self.getMin(root.right)
+            
+            # delete the minimum node in the right child tree 
+            # and update the root right child to
+            # Min node is sure to be a leaf node
+            root.right = self.deleteNode(root.right, minNode.val)
+            
+            # Replace the root node by the minNode
+            minNode.left = root.left
+            minNode.right = root.right
+            root = minNode
+        
+        elif root.val > key:
+            root.left = self.deleteNode(root.left, key)
+        
+        elif root.val < key:
+            root.right = self.deleteNode(root.right, key)
+        # For "change": the func. need to return TreeNode.
+        return root
+    
+    def getMin(self, root):
+        # The minimum node in a BST is the most left leaf
+        while root.left:
+            root = root.left
+        return root
