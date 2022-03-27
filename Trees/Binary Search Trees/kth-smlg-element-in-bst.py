@@ -16,23 +16,30 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    ino = []
-
     # Algorithm:
     # 1. Find the inorder traversal of a BST
     # 2. kth element would be k-1th element in inorder traversal
+    ino = []
     def soln1(self, root: Optional[TreeNode], k: int) -> int:
         """
             Time: O(n) | Space: O(n+Height)
             For some wierd reason this is not accepted in Leetcode
+
+            Runtime: 84 ms, faster than 34.29% submissions.
+            Memory Usage: 18 MB, less than 49.61% submissions.
         """
-        def iot(node):
+
+        # For leetcode multiple tests bug
+        self.ino = []
+        
+        def find(node):
             if not node: return
-            iot(node.left)
+            
+            find(node.left)
             self.ino.append(node.val)
-            iot(node.right)
-        iot(root)
-        print(self.ino)
+            find(node.right)
+        
+        find(root)
         return self.ino[k-1]
 
     # Basically inroder traversal without storing the entire traversal
