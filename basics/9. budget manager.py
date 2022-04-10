@@ -42,6 +42,7 @@ while True:
                 break
         else:
             print("No Blog found with ID {}\n".format(id))
+            
     if choice =='update':
         id = int(input('Enter Blog ID to update: '))
         for exp in Blogs:

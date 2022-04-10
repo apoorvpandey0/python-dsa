@@ -83,7 +83,7 @@ class Expense:
 expenses = []
 
 while True:
-    choice = input('Budget Manager add/quit/all > ')
+    choice = input('Budget Manager add/quit/update/all > ')
     
     if choice =='add':
         amt = int(input('Enter amount: '))
@@ -114,6 +114,19 @@ while True:
             if exp.id == id:
                 expenses.remove(exp)
                 print("Successfully deleted expense!\n")
+                break
+        else:
+            print("No expense found with ID {}\n".format(id))
+
+    if choice == 'update':
+        id = int(input('Enter expense ID to update: '))
+        for exp in expenses:
+            if exp.id == id:
+                amt = int(input('Enter new amount: '))
+                description = input('Enter new description: ')
+                exp.amount = amt
+                exp.desc = description
+                print("Successfully updated expense!\n")
                 break
         else:
             print("No expense found with ID {}\n".format(id))
