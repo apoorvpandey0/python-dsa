@@ -54,6 +54,7 @@ def mid(head):
         end because fast cannot move forward anymore and return [4, 5, 6]
 
     """
+    # IMP: Start both from head, if you start fast from 2nd element(head.next) it will cause issues in even case
     slow = fast = head
 
     # Both fast and fast.next are required here
