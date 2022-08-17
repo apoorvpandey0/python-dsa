@@ -8,11 +8,7 @@ from basic import *
 
 
 # Time: O(n) | Space: 0(1)
-<<<<<<< HEAD
 # Runtime: 56 ms, faster than 99.61% of Python3 online submissions for Remove Linked List Elements.
-=======
-# Runtime: 76 ms, faster than 58.54% of Python3 online submissions for Remove Linked List Elements.
->>>>>>> e33c18ee664afd6822574377c742b77eff017b93
 def removeAll(self, val: int):
     if self.head == None:
         return None
