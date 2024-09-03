@@ -14,6 +14,20 @@ class TreeNode:
         self.left = left
         self.right = right
 
+# Recursion Tip: even if we pas the traversal array as a parameter to iterator function, it ias passed as a reference hence we do not need to manually update it at all
+# The changes made to it inside the call stack will automatically reflect in higher calls
+class RecursionWithArrayPassing:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        def itr(root,trav):
+            if root:
+                # print('pre',root.val,trav)
+                itr(root.left,trav)
+                trav.append(root.val)
+                # print('in',root.val,trav)
+                itr(root.right,trav)
+                # print('post',root.val,trav)
+            return trav
+        return itr(root,[])
 
 # Traversals of a binary tree
 class PreOrderTraversal:
