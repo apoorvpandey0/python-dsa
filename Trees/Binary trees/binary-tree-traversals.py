@@ -14,8 +14,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
-# Recursion Tip: even if we pas the traversal array as a parameter to iterator function, it ias passed as a reference hence we do not need to manually update it at all
-# The changes made to it inside the call stack will automatically reflect in higher calls
+# Recursion Key Points:
+# Pass by Reference: The list trav is passed by reference, meaning that changes to it within the itr function persist across all recursive calls. Even though you don't reassign trav in the higher call stack, you're modifying the same list object.
+# Return Value: The return trav at the end of the itr function ensures that the fully constructed traversal list is returned after all recursive calls have been completed.
 class RecursionWithArrayPassing:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         def itr(root,trav):
