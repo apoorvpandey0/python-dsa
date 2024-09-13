@@ -17,6 +17,7 @@ There are three cases to take care of:
     CASE 1: Current node is in path of max sum
     CASE 2: Current node is root of max sum path
     CASE 3: Current node is not in path of max sum
+    CASE 4: Current node is itself the max path sum
 """
 # Definition for a binary tree node.
 class TreeNode:
@@ -26,6 +27,7 @@ class TreeNode:
         self.right = right
 
 class Solution:
+    # This should be -inf else if this is set to default 0, negative sums will get skipped in max()
     max_sum = float('-inf')
 
     # Runtime: 100 ms, faster than 74.53% of Python3 online submissions for Binary Tree Maximum Path Sum.
@@ -41,13 +43,13 @@ class Solution:
             right = count(node.right)
 
             # Whether to take Left or Right subtree with root node OR current node alone
-            case1 = max(max(left,right)+node.val,node.val)
+            case1 = max(  max(left, right) + node.val,   node.val  )
 
             # Whether current node is the root of the max sum path tree
-            case2 = max(case1,left+right+node.val)
+            case2 = max(  case1, left + right + node.val  )
 
             # Choose max_sum from case1, case2 and current node
-            self.max_sum = max(case2,self.max_sum)
+            self.max_sum = max(  case2, self.max_sum  )
             
             # print(left,right,case1,case2,node.val)
             return case1
