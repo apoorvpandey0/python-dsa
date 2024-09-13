@@ -52,6 +52,8 @@ class Solution:
             self.max_sum = max(  case2, self.max_sum  )
             
             # print(left,right,case1,case2,node.val)
+
+            # In any case return the max subtree path, answer could be using this as a subpath
             return case1
         count(root)
         return self.max_sum
