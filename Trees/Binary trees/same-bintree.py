@@ -40,15 +40,15 @@ class Solution2:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         def is_same(node1, node2):
             
-            # If both trees are empty return True coz empty trees are also equal
+            # If both nodes are empty return True coz empty nodes are also equal
             if not node1 and not node2:                
                 return True
             
-            # If One of the trees is empty return False 
+            # If One of the nodes is empty return False 
             if not node1 or not node2:                
                 return False
 
-            # If both trees are not empty and have same different value return False
+            # If both nodes are not empty and have same different value return False
             if node1.val != node2.val:                
                 return False
             
