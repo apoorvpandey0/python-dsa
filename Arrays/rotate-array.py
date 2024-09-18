@@ -1,6 +1,7 @@
 """
     Rotate 1D array by k positions clockwise
     Link: https://leetcode.com/problems/rotate-array/
+    https://leetcode.com/problems/rotate-array/solutions/5550096/video-using-remainder-with-3-solutions
 """
 
 
