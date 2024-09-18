@@ -392,6 +392,7 @@ class VerticalOrderTraversal:
         """
             1. Divide the tree in rows and columns
             2. Our ds looks like this {'col_number':'{'row_number':list_of_nodes}'}
+            3. This cannot be done using just the column index, as the cases where row and column both are same for nodes sorting by values will not be possible while keeping root at the start always
         """
         ds = defaultdict(lambda: defaultdict(list))
 
