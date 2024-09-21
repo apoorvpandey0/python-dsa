@@ -41,6 +41,16 @@ def r3(nums, k):
     nums[:] = reverse(nums, 0, n - 1)
     return nums
 
+def r4(self, nums: List[int], k: int) -> None:
+    """
+    This is not an in place solution
+    """
+    N = len(nums)
+    ans = [None for i in range(N)]
+    for i in range(N):
+        ans[ (i+k) % N ] = nums[i]
+    return ans
+
 
 print(r3(nums=[1, 2, 3, 4, 5, 6, 7], k=0))
 # print(
