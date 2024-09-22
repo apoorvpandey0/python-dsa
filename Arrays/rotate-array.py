@@ -49,6 +49,25 @@ def sol2(nums, k):
     nums[:] = reverse(nums, 0, n - 1)
     return nums
 
+def sol21(self, nums: List[int], k: int) -> None:
+        """
+        Same as sol 2, in place
+        """
+        def rev(l,r,nums):
+            while l<r:
+                nums[l],nums[r] = nums[r],nums[l]
+                l+=1
+                r-=1
+            return nums
+        
+        N = len(nums)-1
+        k %= N+1
+        # Nums is passed by reference in python
+        r1 = rev(0,N-k,nums)
+        r2 = rev(N-k+1,N,r1)
+        r3 = rev(0,N,r2)
+        return nums
+
 def sol3(self, nums: List[int], k: int) -> None:
     """
     This is not an in place solution
