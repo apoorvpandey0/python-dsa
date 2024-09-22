@@ -16,6 +16,8 @@ def cs(nums):
     """
         Soln: https://www.youtube.com/watch?v=sEQk8xgjx64
 
+        Quicksort Partition
+
         Algo:
             if arr[m]==0: swap it with left index and m++,l++
             if arr[m]==1: skip it as it will be in place automatically ie m++
