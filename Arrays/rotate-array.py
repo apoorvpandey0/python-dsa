@@ -5,6 +5,8 @@
 """
 
 
+# While reversing any subarray, us array ke mid tak he reverse karna hai, else wo array wapas unreversed ho jayega
+# start and end are indices of the array
 def reverse(nums, start, end):
     while start < end:
         nums[start], nums[end] = nums[end], nums[start]
@@ -12,13 +14,19 @@ def reverse(nums, start, end):
         end -= 1
     return nums
 
-
+def reverseWithForLoop(l,r,nums):
+    for i in range(l,(r-l)//2):
+        tmp = nums[r-i]
+        nums[r-i] = nums[i]
+        nums[i] = tmp
+    print(nums)
+    
 # print(reverse([1, 2, 3, 4, 5, 6, 7, 8], 3, 6))
 
 
 # Solution 1:
 # Runtime: 204 ms, faster than 97.60% of Python3 online submissions for Rotate Array.
-def r2(nums, k):
+def sol1(nums, k):
     k = k % len(nums)
     nums[:] = nums[-k:] + nums[:-k]
     return nums
@@ -27,7 +35,7 @@ def r2(nums, k):
 # Solution 2:
 # Using reversing method
 # Runtime: 228 ms, faster than 74.00% of Python3 online submissions for Rotate Array.
-def r3(nums, k):
+def sol2(nums, k):
     """
         Reverse nums[:n-k]
         Reverse nums[n-k:]
@@ -41,7 +49,7 @@ def r3(nums, k):
     nums[:] = reverse(nums, 0, n - 1)
     return nums
 
-def r4(self, nums: List[int], k: int) -> None:
+def sol3(self, nums: List[int], k: int) -> None:
     """
     This is not an in place solution
     """
