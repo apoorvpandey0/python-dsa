@@ -22,6 +22,20 @@ def cs(nums):
             if arr[m]==0: swap it with left index and m++,l++
             if arr[m]==1: skip it as it will be in place automatically ie m++
             if arr[m]==2: swap it with high/right index h--
+
+        Nots:
+        while m<=h and not just m<h
+        Processing All Elements: The index m represents the current element being examined. 
+        The loop needs to continue as long as there are unprocessed elements between m and h. 
+        If we only use m < h, we might miss processing the element at index h, especially when m and h are equal, which indicates there’s still an element left to check.
+
+        Note 2:
+        We do not increment m on 2 because on swapping with "h" we might bring another 2 in "m" position which will simply get skipped if m got ++
+        Try this ex: [0, 1, 2, 2, 0, 1, 2]
+        at m = first 2
+        swapping with h = last 2
+        and incrementing m will place m at 2nd 2
+        completely skipping the new swapped 2 which is now the first 2
     """
     l = 0
     m = 0
