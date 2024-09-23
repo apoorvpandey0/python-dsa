@@ -8,20 +8,19 @@
 # Solution 1:
 # Using right max array
 # Time: O(n) | Space O(n)
-# Runtime: 1789 ms, faster than 41% of Python3 online submissions for Best Time to Buy and Sell Stock.
-def bss1(nums):
-    # Build right max array
-    right = [-1] * len(nums)
-    right[-1] = nums[-1]
-    for i in range(len(nums) - 2, -1, -1):
-        right[i] = max(nums[i], right[i + 1])
-
-    # Compare the right and nums values for each i
-    answer = 0
-    for i in range(len(nums)):
-        answer = max(answer, right[i] - nums[i])
-    return answer
-
+# Very slow
+def maxProfit(self, prices: List[int]) -> int:
+    lMin = [float('-inf') for i in prices]
+    
+    tmp = prices[0]
+    for i in range(len(prices)):
+        tmp = min(prices[i],tmp)
+        lMin[i] = tmp
+        
+    ans = 0
+    for i in range(len(prices)):
+        ans = max(ans,prices[i]-lMin[i])
+    return ans
 
 # Solution 2:
 # Using minPrice since start method
