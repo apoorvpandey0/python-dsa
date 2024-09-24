@@ -9,6 +9,7 @@
 # Using Kdanes algorithm
 # Dry run the program for this to make sense
 # Time: O(n)
+# Minimum sum subarray ke lie just signs change
 # Runtime: 744 ms, faster than 78.32% of Python3 online submissions for Maximum Subarray.
 def ms(self, nums: List[int]) -> int:
 
