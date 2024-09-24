@@ -7,7 +7,7 @@
 
 # Solution 1
 # Time: O(n^2) | Space: O(1)
-# Runtime: 50 ms, faster than 36.55% of Python3 online submissions for Rotate Image.
+# Runtime: 37 ms, faster than 66.55% of Python3 online submissions for Rotate Image.
 def rotate(grid):
     matrix.reverse()
     # print(matrix)
