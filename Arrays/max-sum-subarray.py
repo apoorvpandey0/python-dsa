@@ -10,17 +10,23 @@
 # Dry run the program for this to make sense
 # Time: O(n)
 # Runtime: 744 ms, faster than 78.32% of Python3 online submissions for Maximum Subarray.
-def ms(nums):
-    curr = 0
-    answer = float('-inf')
-    for i in range(len(nums)):
-        curr += nums[i]
-        if curr < nums[i]:
-            curr = nums[i]
-        answer = max(answer, curr)
-        print(curr, answer, nums[i])
-    return answer
+def ms(self, nums: List[int]) -> int:
 
+    # temporary subarray sum, this will keep iterating throughout array
+    curr = 0
+
+    # final ans
+    answer = float('-inf')
+
+    for i,ele in enumerate(nums):
+        curr+=ele
+
+        # reset current subarray to current element if subarray sun is <current element
+        curr = ele if curr<ele else curr
+
+        # answer should be maximum of current subarray sum and itself
+        answer = max(curr,answer)
+    return answer
 
 # print(ms([-2, -3, 4, -1, 8, -8, 5, -3]))  #11
 # print(ms([-2, 1, -3, 4, -1, 2, 1, -5, 4]))  #6
