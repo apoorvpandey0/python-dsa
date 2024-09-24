@@ -29,6 +29,33 @@ def ms(self, nums: List[int]) -> int:
         answer = max(curr,answer)
     return answer
 
+# Also counting the subarray indices which has the maxium sum
+def maxSubArray(self, nums: List[int]) -> int:
+    # SubArray track
+    l = 0
+    r = 0
+
+    # usual
+    curr = 0
+    answer = float('-inf')
+
+    for i,ele in enumerate(nums):
+        curr+=ele
+        if curr<ele:
+            curr = ele
+
+            # Update the starting pointer of subarray as i
+            l = i
+
+        if curr> answer:
+            answer = curr
+
+            # At this point we have stepped out of the max subarray
+            # Hence update end pointer with i
+            r = i
+        answer = max(curr,answer)
+
+
 # print(ms([-2, -3, 4, -1, 8, -8, 5, -3]))  #11
 # print(ms([-2, 1, -3, 4, -1, 2, 1, -5, 4]))  #6
 # print(ms([1]))  #1
