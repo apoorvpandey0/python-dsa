@@ -3,6 +3,7 @@
 """
 
 # Brute forced
+# Two pass |  O(n) space and time
 def rearrangeArray(self, nums: List[int]) -> List[int]:
   # Seperate out positive and negatives
   # pos and neg should be equal in length as per constraints in question
@@ -28,4 +29,20 @@ def rearrangeArray(self, nums: List[int]) -> List[int]:
             n+=1
         # print(ans,i)
         i+=1
+    return ans
+
+
+# One pass solution | O(n) space and time
+def rearrangeArray(self, nums: List[int]) -> List[int]:
+    pos = 0
+    neg = 1
+    ans = [0 for i in nums]
+
+    for i,ele in enumerate(nums):
+        if ele>0:
+            ans[pos] = ele
+            pos+=2
+        else:
+            ans[neg] = ele
+            neg+=2
     return ans
