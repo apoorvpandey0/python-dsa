@@ -46,6 +46,28 @@ def me2(nums):
     if count > len(nums / 2):
         return nums[candidate_index]
 
+# Voting alogirithm but easier implementation
+def me21(nums):
+    ans = nums[0]
+    count = 0
+
+    for i,ele in enumerate(nums):
+
+        # if current ans is found +1
+        if ele == ans: 
+            count+=1
+        
+        else:
+            # if count will become negative at this point that means the current element cannot be majority element
+            if count == 0:
+                ans = ele
+
+            # if current ans is not found -1
+            else: 
+                count-=1
+    return ans
+        
+
 
 # Solution 3:
 # middlemost element should always be in majority
