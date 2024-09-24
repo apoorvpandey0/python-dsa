@@ -2,6 +2,10 @@
     https://leetcode.com/problems/rearrange-array-elements-by-sign/
 """
 
+Two pass soln
+One pass soln
+Space cannot be optimized - GPT ne galat ans dia space optimize karke
+
 # Brute forced
 # Two pass |  O(n) space and time
 def rearrangeArray(self, nums: List[int]) -> List[int]:
