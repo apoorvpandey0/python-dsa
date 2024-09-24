@@ -9,18 +9,19 @@
 # Time: O(n^2) | Space: O(1)
 # Runtime: 50 ms, faster than 36.55% of Python3 online submissions for Rotate Image.
 def rotate(grid):
-    n = len(grid)
-    # Transposing the matrix
+    matrix.reverse()
+    # print(matrix)
+    
+    n = len(matrix)
     for i in range(n):
-        # Starting from i+1 avoids the diagonal
-        for j in range(i + 1, n):
-            print(grid[i][j], grid[j][i])
-            # Swapping the elements
-            grid[j][i], grid[i][j] = grid[i][j], grid[j][i]
-    # Reversing the rows
-    for i in grid:
-        i.reverse()
-    return grid
+        # Start swapping from j = diagonal + 1
+        # Diagonal ke i,j -> 0,0 | 1,1 | 2,2
+        # Jinko swap karna hai unke ij -> 0,1->n | 1,2->n | 2,3->n
+        # Basically j = i+1 selects the upper half of the matrix
+        for j in range(i+1,n):
+            matrix[i][j],matrix[j][i] = matrix[j][i],matrix[i][j]
+    return matrix
+        
 
 
 # print(rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
