@@ -10,7 +10,22 @@ class Solution:
         Video: https://www.youtube.com/watch?v=HbbYPQc-Oo4
     """
 
-    # Solution 1:
+    # Solution 1
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        count = 0
+        n = len(nums)
+    
+        # Check all subarrays
+        for start in range(n):
+            current_sum = 0  # Reset sum for new starting point
+            for end in range(start, n):
+                current_sum += nums[end]  # Add the current element to the sum
+                if current_sum == k:  # Check if the sum equals k
+                    count += 1  # Increment the count
+        return count
+
+    
+    # Solution 2:
     # Prefix sum method
     # Time: O(n^2) | TLE
     def subarraySum1(self, nums, k):
