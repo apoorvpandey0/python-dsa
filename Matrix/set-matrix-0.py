@@ -78,32 +78,50 @@ def sm2(self, matrix: List[List[int]]) -> None:
 # 1. Instead of keeping seperate record of rownand columns
 # 2. Simply use the first elements of the Matrix itself
 # 3. In second pass set the rows and cols to 0
+# Edge cases
+# Since matrix 0,0 is only one place, so it cannot store 0 indicator for both row0 and col 0
+# Hence we need one more variable to track if first rows needs to be set as 0
+# And we will use 0,0 as regularly for storing 0 indicator for column 0
+# This coule be vice versa, or if its confusing use two seperate variable for 0 indicators of 0th row and 0th column
 # Time: O(n^2) | Space: O(1)
-def sm(mat):
-    print(mat)
-    rows = len(mat)
-    cols = len(mat[0])
-    for i in range(rows):
-        # if i in rset: continue
-        for j in range(cols):
-            # if j in cset: continue
-            if mat[i][j] == 0:
-                mat[i][0] = 0
-                mat[0][j] = 0
+def sz3(self, matrix: List[List[int]]) -> None:
+    nrows = len(matrix)
+    ncols = len(matrix[0])
+    firstRow0 = False
 
-    # TODO: The code belows needs fixing!
-    print(mat)
-    for row in range(rows):
-        if mat[row][0] == 0:
-            mat[row] = [0] * cols
-    print(mat)
-    for col in range(cols):
-        if mat[0][col] == 0:
-            for k in range(rows):
-                mat[k][col] = 0
+    # Determine 0 indicator for rows and columns with special case for row 0
+    for i in range(nrows):
+        for j in range(ncols):
+            if matrix[i][j] == 0:
+                if (i==0):
+                    firstRow0 = True
+                else:        
+                    matrix[i][0] = 0
+                    matrix[0][j] = 0
+    # print(matrix)
+
+    # Set all rows 0 where 0 indicator is present from 1,nrows -> again due to special case for row 0
+    for r in range(1,nrows):
+        if matrix[r][0] == 0:
+            for c in range(ncols):
+                matrix[r][c] = 0
+    # print(matrix)
+
+    # Set all columns to 0 where 0 indicator for column is present
+    for c in range(ncols):
+        if matrix[0][c] == 0:
+            for r in range(nrows):
+                matrix[r][c] = 0
+    
+    # print(firstRow0)
+
+    # Handle special case row 0 at last, if not done at last the first row will be overwritten and history for columns will be lost
+    if firstRow0==True:
+        for c in range(ncols):
+            matrix[0][c] = 0
 
     # print(mat)
-    return mat
+    return matrix
 
 
 # print(sm([[1, 1, 1], [1, 0, 1], [1, 1, 1]]))
