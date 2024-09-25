@@ -11,6 +11,7 @@ class Solution:
     """
 
     # Solution 1
+    # Brute force | TLE
     def subarraySum(self, nums: List[int], k: int) -> int:
         count = 0
         n = len(nums)
