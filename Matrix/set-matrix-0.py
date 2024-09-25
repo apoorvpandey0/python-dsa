@@ -44,31 +44,33 @@ def sm1(grid):
 # goto those columns after initial traversal and set the values to 0
 # Time: O(n^2) | Space: O(m+n)
 # Runtime: 235 ms, faster than 15.35% of Python3 online submissions for Set Matrix Zeroes.
-def sm2(mat):
-    print(mat)
-    rows = len(mat)
-    cols = len(mat[0])
-    rset = set()
-    cset = set()
-    for i in range(rows):
-        # if i in rset: continue
-        for j in range(cols):
-            # if j in cset: continue
-            if mat[i][j] == 0:
-                print("Running: ", i, j)
-                rset.add(i)
-                cset.add(j)
-                # if i not in rset and j not in cset:
-    print(rset, cset)
-    for row in rset:
-        mat[row] = [0] * cols
-    for col in cset:
-        for k in range(rows):
-            # print(k, j)
-            mat[k][col] = 0
+def sm2(self, matrix: List[List[int]]) -> None:
+    """
+    Do not return anything, modify matrix in-place instead.
+    """
+    nrows = len(matrix)
+    ncols = len(matrix[0])
+    rows = set()
+    cols = set()
 
-    # print(mat)
-    return mat
+    # Find out rows and cols to be set 0
+    for i in range(nrows):
+        for j in range(ncols):
+            if matrix[i][j] == 0:
+                rows.add(i)
+                cols.add(j)
+                
+    # set rows 0
+    for r in rows:
+        for c in range(ncols):
+            matrix[r][c] = 0
+    
+    # set cols 0
+    for c in cols:
+        for r in range(nrows):
+            matrix[r][c] = 0
+    
+    return matrix
 
 
 # Solution 3:
