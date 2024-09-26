@@ -52,6 +52,23 @@ class Solution:
                     counter += 1
         return counter
 
+
+    # Try this
+    # Input
+    # nums =
+    # [3,4,7,-2,2,1,4,2]
+    # k =
+    # 7
+    # Stdout
+    # i,counter,preFixSum,,dict
+    # 3 0 3 {0: 1, 3: 1}
+    # 4 1 7 {0: 1, 3: 1, 7: 1}
+    # 7 2 14 {0: 1, 3: 1, 7: 1, 14: 1}
+    # -2 2 12 {0: 1, 3: 1, 7: 1, 14: 1, 12: 1}
+    # 2 3 14 {0: 1, 3: 1, 7: 1, 14: 2, 12: 1}
+    # 1 3 15 {0: 1, 3: 1, 7: 1, 14: 2, 12: 1, 15: 1}
+    # 4 4 19 {0: 1, 3: 1, 7: 1, 14: 2, 12: 1, 15: 1, 19: 1}
+    # 2 6 21 {0: 1, 3: 1, 7: 1, 14: 2, 12: 1, 15: 1, 19: 1, 21: 1}
     # Solution 2:
     # Prefix sum with Dictionary and Single pass method
     # Algorithm: 
