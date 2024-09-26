@@ -73,9 +73,9 @@ class Solution:
             # tack prefix sum till this element
             sum += ele
 
-            # 0 -> j (sum) subtract 0 -> i (another subarray) = k i.e subarray is i -> j
+            # 0 -> j (sum) subtract 0 -> i (another subarray) = k i.e subarray with sum k is i -> j
             # => If  0 -> j (sum) - k is in dict then we have already found a subarray which will satisfy the eq above
-            # counter += how many time we have encountered that subarray in line above
+            # counter += how many time we have encountered the subarray before, in line above
             if sum - k in dict:
                 counter += dict[sum - k]
 
