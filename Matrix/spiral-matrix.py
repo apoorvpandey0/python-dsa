@@ -121,6 +121,41 @@ def spiral5(matrix):
         matrix = (list(zip(*matrix)))[::-1]
     return result
 
+# Clean non pythonic version
+def spiralOrder(matrix: List[List[int]]) -> List[int]:
+    nrows,ncols = len(matrix),len(matrix[0])
+    left = 0
+    right = ncols-1
+    top = 0
+    bottom = nrows-1
+
+    ans = []
+    while left<=right and top<=bottom:
+
+        for i in range(left,right+1):
+            ans.append(matrix[top][i])
+        top+=1
+        # print(top,bottom,left,right,ans)
+
+        for i in range(top,bottom+1):
+            ans.append(matrix[i][right])
+        right-=1
+        # print(top,bottom,left,right,ans)
+
+        if top <= bottom:  # Check to avoid duplicate traversal
+            # Traverse from right to left along the bottom row
+            for i in range(right, left - 1, -1):
+                ans.append(matrix[bottom][i])
+            bottom -= 1
+
+        if left <= right:  # Check to avoid duplicate traversal
+            # Traverse from bottom to top along the left column
+            for i in range(bottom, top - 1, -1):
+                ans.append(matrix[i][left])
+            left += 1
+    return ans
+
+
 
 # print(spiral([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]))
 # print(spiral3([[7], [9], [6]]))
