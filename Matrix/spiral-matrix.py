@@ -142,18 +142,26 @@ def spiralOrder(matrix: List[List[int]]) -> List[int]:
         right-=1
         # print(top,bottom,left,right,ans)
 
+        # Here for right -> left traversal we are just checking top<=bottom because left and right condition will fail automatically
         if top <= bottom:  # Check to avoid duplicate traversal
             # Traverse from right to left along the bottom row
             for i in range(right, left - 1, -1):
                 ans.append(matrix[bottom][i])
             bottom -= 1
-
+        
+        # Here for bottom -> top traversal we are just checking left<=right because top and bottom condition will fail automatically
         if left <= right:  # Check to avoid duplicate traversal
             # Traverse from bottom to top along the left column
             for i in range(bottom, top - 1, -1):
                 ans.append(matrix[i][left])
             left += 1
+
+        # To eliminate two different if confitions and clear confusions we could simply use the below condition for last two loops
+        # if top <= bottom and left <= right:
+        #     for loop right ->left
+        #     for loop bottom -> top
     return ans
+
 
 
 
