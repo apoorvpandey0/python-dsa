@@ -40,6 +40,8 @@ def cs(nums):
     l = 0
     m = 0
     h = len(nums) - 1
+
+    # m<h won't work try this: [2,0,1]
     while m <= h:
         if nums[m] == 0:
             nums[l], nums[m] = nums[m], nums[l]
