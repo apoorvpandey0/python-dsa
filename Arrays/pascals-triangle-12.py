@@ -53,15 +53,15 @@ class PascalsTriangleSoln2:
         Runtime: 38 ms, faster than 67.29% of Python3 online submissions for Pascal's Triangle II.
         Memory Usage: 13.8 MB, less than 97.27% of Python3 online submissions for Pascal's Triangle II.
     """
-    def getRow(self, numRows: int) -> List[int]:
-        ans = [[1]]
-        if numRows ==0:return ans[-1]
-        for i in range(1,numRows+1):
-            tmp = [0]*(i+1)
-            tmp[0] = tmp[-1] = 1
-            for j in range(1,i):
-                tmp[j] = ans[0][j]+ans[0][j-1]
-            ans.append(tmp)
-            ans.pop(0)
-        return ans[-1]
+    def getRow(self, rowIndex: int) -> List[int]:    
+        if rowIndex ==0: return [1]
+        elif rowIndex ==1: return [1,1]
+        last = [1,1]
+        for itr in range(1,rowIndex):
+            tmp = [1]
+            for i in range(itr):
+                tmp.append(last[i]+last[i+1])
+            tmp.append(1)
+            last = tmp
+        return last
             
