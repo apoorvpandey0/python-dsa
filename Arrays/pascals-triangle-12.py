@@ -31,7 +31,19 @@ class PascalsTriangleSolution1:
             ans.append(tmp)
         return ans[-1]
             
+class AnotherSimilarSolution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        if numRows ==1: return [[1]]
+        elif numRows ==2: return [[1],[1,1]]
+        ans = [[1],[1,1]]
 
+        for _ in range(numRows-2):
+            tmp = []
+            for i in range(len(ans)-1):
+                tmp.append(ans[-1][i]+ans[-1][i+1])
+            tmp = [1] + tmp + [1]
+            ans.append(tmp)
+        return ans
 
 class PascalsTriangleSoln2:
     """
