@@ -8,6 +8,7 @@ class Solution:
         Solution: https://leetcode.com/problems/subarray-sum-equals-k/discuss/503178/Python5-Approaches-easy-to-understand-with-detailed-explanations
                   https://leetcode.com/problems/subarray-sum-equals-k/discuss/867435/DETAILED-EXPLANATION-OF-MATH-BEHIND-O(N)-SOLUTION-PYTHON3
         Video: https://www.youtube.com/watch?v=HbbYPQc-Oo4
+        https://www.youtube.com/watch?v=fFVZt-6sgyo
     """
 
     # Solution 1
@@ -126,6 +127,31 @@ class Solution:
 
         return (count)
 
+"""
+Solution 2 with another explanation:
+The question asks how many subarray sum equals to k. For a subarray to sum to k, you need a subarray, as in a part of the array from index 'a' to index 'b' to have a sum equal to k. 
+But when we reach any index 'b', we obviously do not know, if there was a subarray from index 'a' to index 'b' equal to k. 
+However we do have the sums from 0 to index 'a' in our hash map, because we have been storing all sums starting from index '0' to every single index till now, and the count of them as the value of the key. 
+Now obviously sum_0_to_a + sum_a_to_b  = total sum so far (curSum). If we go to the original ask, which is we need a prefix that is sum_a_to_b to be equal to k. For that to hold true, replace sum_a_to_b with 'k'. Hence, sum_0_to_a + k  = curSum. Hence curSum - k = sum_0_to_a. 
+And then since we have been storing all possible values of sum_0_to_a so far in the hashmap, curSum - k must exist in the hashmap as a key, and we can simply add the value from the hashmap to add number of prefixes from 0 to any index which equalled to curSum - k .
+"""
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        # The first IF has to be above the second if case fail [1], 0
+        
+        ans = 0
+        freq = {0:1}
+        currSum = 0
+        for i,ele in enumerate(nums):
+            currSum+=ele
+        
+            if currSum - k in freq: ans+=freq[currSum-k]
+
+            if currSum in freq: freq[currSum]+=1
+            else: freq[currSum] = 1
+
+        
+        return ans
 
 # print(Solution().subarraySum([1,1,1],2))
 print(Solution().subarraySum([-1, 1, 2, 3, 4], -1))
