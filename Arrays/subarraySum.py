@@ -134,6 +134,23 @@ But when we reach any index 'b', we obviously do not know, if there was a subarr
 However we do have the sums from 0 to index 'a' in our hash map, because we have been storing all sums starting from index '0' to every single index till now, and the count of them as the value of the key. 
 Now obviously sum_0_to_a + sum_a_to_b  = total sum so far (curSum). If we go to the original ask, which is we need a prefix that is sum_a_to_b to be equal to k. For that to hold true, replace sum_a_to_b with 'k'. Hence, sum_0_to_a + k  = curSum. Hence curSum - k = sum_0_to_a. 
 And then since we have been storing all possible values of sum_0_to_a so far in the hashmap, curSum - k must exist in the hashmap as a key, and we can simply add the value from the hashmap to add number of prefixes from 0 to any index which equalled to curSum - k .
+
+OR
+
+Think of 
+
+let subarray with sum = k be subarray from index a->b
+
+cumulative_sum = sum_0_a + sum_a_b                    ------ 1
+
+replacing sum_a_b with k as asked in question: cumulative_sum = sum_0_a + k
+
+=> sum0_a = cumulative_sum - k                               --------2 
+new question is find all sum_0_a for each index from 0->n where sum0_a is eq 2
+
+
+** Order of if conditions is important
+** cumulative sum can be written as sum_0_b
 """
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
