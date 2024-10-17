@@ -6,24 +6,22 @@
 
 
 # Time: O(n(log(n)))
-def mi(nums):
-
-    # Time: O(nlogn)
-    nums.sort(key=lambda x: x[0])
-    print(nums)
-    answer = []
-
-    # Time: O(n)
-    tmp = nums[0]
-    for i, pair in enumerate(nums):
-        if pair[0] <= tmp[1]:
-            tmp[1] = max(tmp[1], pair[1])
-        else:
-            answer.append(tmp)
-            tmp = pair
-    answer.append(tmp)
-
-    return answer
+# Beats 100%
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        
+        intervals.sort(key=lambda x:x[0])
+        ans = []
+        l,r = intervals[0]
+        
+        for tl,tr in intervals:
+            if tl<=r:
+                if tr>r: r = tr
+            else:
+                ans.append([l,r])
+                l,r = tl,tr
+        ans.append([l, r])
+        return ans
 
 
 print(
