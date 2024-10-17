@@ -7,6 +7,9 @@ https://leetcode.com/problems/two-sum/description/
 
 Modification
 Find all pair values whose sum is = target
+1. Brute force
+2. Sort array then use Two pointers
+3. ...
 def FindAllPairs(self, nums: List[int], target: int) -> List[int]:
     nums.sort()
     l = 0
