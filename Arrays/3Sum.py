@@ -17,6 +17,9 @@ class Solution:
             k = len(nums) - 1
 
             while j < k:
+
+                # You cannot write if condition here for incrementing j as we did in above for loop
+                
                 total = nums[i] + nums[j] + nums[k]
 
                 if total > 0:
@@ -28,6 +31,7 @@ class Solution:
                     j += 1
 
                     # Move j to its next non duplicate value
+                    # This has to be a while loop here, since we dont want the above logic to run unless we reach the next non duplicate value of j
                     while nums[j] == nums[j-1] and j < k:
                         j += 1
         
