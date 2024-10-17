@@ -19,6 +19,11 @@ class Solution:
             while j < k:
 
                 # You cannot write if condition here for incrementing j as we did in above for loop
+                # if nums[j] == nums[j-1]: 
+                #     j+=1
+                #     continue
+                # [-4, -1, -1, 0, 1, 2] in this case -1,-1,2 soln will get skipped as if will not let j to be 2nd index
+
                 
                 total = nums[i] + nums[j] + nums[k]
 
