@@ -6,7 +6,7 @@ https://leetcode.com/problems/two-sum/description/
 3. Set -> O(n)
 
 Modification
-Find all pair values whose sum is = target
+Find all pair values (not indices) whose sum is = target
 1. Brute force
 2. Sort array then use Two pointers
 3. ...
