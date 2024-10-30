@@ -7,6 +7,43 @@ arr = [-1, 0, 3, 5, 5, 5, 9, 12]
 arr2 = [5, 7, 7, 8, 8, 10]
 
 
+Elegant solution without if elses hahahaha
+Mid element handles all cases of if else
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        ans = [-1,-1]
+
+        l = 0
+        r = len(nums)-1
+        while l<=r:
+            m = (l+r)//2
+            if nums[m] == target:
+                ans[0] = m
+                r = m-1
+            elif target> nums[m]:
+                l = m + 1
+            else :
+                r = m - 1
+        
+        l = 0
+        r = len(nums)-1
+        while l<=r:
+            m = (l+r)//2
+            if nums[m] == target:
+                ans[1] = m
+                l = m+1
+            elif target> nums[m]:
+                l = m + 1
+            else :
+                r = m - 1
+        
+
+        return ans
+
+
+
+
+# Messy solution
 class Solution:
 
     def isFirst(self, i, arr):
