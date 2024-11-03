@@ -1,8 +1,12 @@
 """
     Search an element in Rotated Ascending Sorted Array with distinct values
     Link: https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+    SOL 1:
     Time: O(log(n)) or 2log(n)
-    Runtime: 44 ms, faster than 65.06% of Python3 online submissions for Search in Rotated Sorted Array.
+    
+    SOL 2:
+    One pass soln: https://www.youtube.com/watch?v=U8XENwh8Oy8
     
 """
 
