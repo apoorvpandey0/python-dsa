@@ -3,6 +3,7 @@
     Desc: The majority element is the element that appears more than ⌊n / 2⌋ times.
           You may assume that the majority element always exists in the array.
     Link: https://leetcode.com/problems/majority-element/
+    soln: https://leetcode.com/problems/majority-element/solutions/3676530/3-method-s-beats-100-c-java-python-beginner-friendly
 """
 
 from collections import Counter
