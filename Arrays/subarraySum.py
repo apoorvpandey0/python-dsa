@@ -166,7 +166,25 @@ class Solution:
 
             if currSum in freq: freq[currSum]+=1
             else: freq[currSum] = 1
+        return ans
 
+"""
+    Above solution Without 0:1
+"""
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        
+        ans = 0
+        freq = {}
+        currSum = 0
+        for i,ele in enumerate(nums):
+            currSum+=ele
+
+            if currSum == k: ans+=1
+            if currSum - k in freq: ans+=freq[currSum-k]
+
+            if currSum in freq: freq[currSum]+=1
+            else: freq[currSum] = 1
         
         return ans
 
