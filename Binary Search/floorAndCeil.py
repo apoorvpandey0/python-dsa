@@ -24,6 +24,26 @@ def getFloorAndCeil(a, n, x):
 
     return floor, ceiling
 
+OR: 
+def getFloorAndCeil(a, n, x):
+    # Write your code here.
+    n = len(a)
+    left, right = 0, n - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if a[mid] == x:
+            return a[mid], a[mid]  # x is both its own floor and ceiling
+        
+        elif a[mid] < x:
+            left = mid + 1
+        
+        else:
+            right = mid - 1
+    # Because floor dosent exists if number < nums[0] and similarly ceil does not exists if number>nums[last element]
+    return a[right] if right>=0 else -1 ,a[left] if left<len(a) else -1
+
 
 GFG lower bound
 class Solution:
