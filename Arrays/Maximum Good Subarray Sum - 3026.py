@@ -1,6 +1,7 @@
 # https://leetcode.com/problems/maximum-good-subarray-sum/description/
 # https://www.youtube.com/watch?v=zFxDDglHb4o
 
+# clean soln: https://leetcode.com/problems/maximum-good-subarray-sum/solutions/4672257/python-easy-solution-prefix-sum/
 
 """
 Concepts used two sum, prefix sum, hash map
