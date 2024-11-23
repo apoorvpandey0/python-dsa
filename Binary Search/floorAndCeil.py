@@ -23,3 +23,22 @@ def getFloorAndCeil(a, n, x):
             right = mid - 1
 
     return floor, ceiling
+
+
+GFG lower bound
+class Solution:
+    def findFloor(self,nums,k):
+        if k<nums[0]: return -1
+        if k>nums[-1]: return nums[-1]
+        
+        start = 0
+        end = len(nums)-1
+        
+        while start<=end:
+            mid = (start+end)//2
+            if nums[mid] == k: return mid
+            if k>nums[mid]:
+                start = mid+1
+            else:
+                end = mid-1
+        return end
