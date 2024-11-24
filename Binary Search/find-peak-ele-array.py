@@ -6,6 +6,25 @@
 """
 
 
+====================== Returning Start ====================
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        
+        start =0
+        end = len(nums)-1
+
+        while start<end:
+            mid = (start+end)//2
+
+            if nums[mid+1]>nums[mid]:
+                start = mid+1
+            else:
+                end = mid
+            # print(start,mid,end)
+        return start
+
+
+====================== Returning mid ======================
 # Runtime: 40 ms, faster than 94.93% of Python3 online submissions for Find Peak Element.
 # Time: O(log(n))
 def peak(nums):
