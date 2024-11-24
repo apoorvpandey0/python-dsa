@@ -3,16 +3,48 @@
     Link: https://leetcode.com/problems/search-in-rotated-sorted-array/
 
     SOL 1:
-    Time: O(log(n)) or 2log(n)
+    One pass soln: https://www.youtube.com/watch?v=U8XENwh8Oy8
     
     SOL 2:
-    One pass soln: https://www.youtube.com/watch?v=U8XENwh8Oy8
+    Time: O(log(n)) or 2log(n)
     
 """
 
+=========================== LOG N Solution using if conditions without finding pivot element ================
+class Solution1:
+    def search(self, nums: List[int], target: int) -> int:
+        start = 0
+        end = len(nums)-1
 
-class Solution:
+        while start<=end:
+            mid = (start+end)//2
 
+            if nums[mid] == target: return mid
+
+            # First array
+            if nums[mid]>= nums[0]:
+                if target > nums[mid]: 
+                    start = mid+1
+                elif target < nums[0]: 
+                    start = mid + 1
+                else:
+                    end = mid - 1
+
+            # Second array
+            elif nums[mid] < nums[0]:
+                if target<nums[mid]: 
+                    end = mid - 1
+                elif target>=nums[0]: 
+                    end = mid - 1
+                else:
+                    start = mid+1
+            
+            # print(start,mid,end)
+        return -1 if start>end else mid
+
+=================== Log N solution using find the pivot then solve method ========================
+
+class Solution2:
     # Function Time: O(log(n))
     def findPivot(self, nums):
         # Finding the pivot/max value's index
@@ -40,7 +72,6 @@ class Solution:
             else:  # mid is greater than left, then max is on the right hand side
                 left = mid + 1
         return -1
-
     # Function Time: O(log(n))
     def bs(self, arr, target):
         # print("running bs in ", arr, "for ", target)
