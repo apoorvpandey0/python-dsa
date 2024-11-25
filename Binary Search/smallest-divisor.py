@@ -23,6 +23,7 @@ class Solution:
 
 ================ Optimized ======================
 O N * LOG N Solution
+
 import math
 class Solution:
     def smallestDivisor(self, nums: List[int], threshold: int) -> int:
@@ -40,3 +41,11 @@ class Solution:
             if tmpSum>threshold: start = mid + 1
             else: end = mid - 1
         return ans
+
+"""
+1.  If we did not used start<=end and used start<end
+    We would not reach cases where answer is atstart or end of the answer space
+    Ex: Input: nums = [44,22,33,11,1], threshold = 5
+    Output: 44
+2. We have to use start = mid + 1 and end = mid - 1 and not just start = mid or end = mid, to make the exit for the while loop
+"""
