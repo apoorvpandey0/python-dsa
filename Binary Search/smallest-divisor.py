@@ -22,3 +22,21 @@ class Solution:
 
 
 ================ Optimized ======================
+O N * LOG N Solution
+import math
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        start = 1
+        end = max(nums)
+        ans = float('inf')
+        while start<=end:
+            mid = (start+end)//2
+            tmpSum = 0
+            for ele in nums:
+                tmpSum+= math.ceil(ele/mid)
+            if tmpSum<=threshold:
+                ans = min(mid,ans)
+            
+            if tmpSum>threshold: start = mid + 1
+            else: end = mid - 1
+        return ans
