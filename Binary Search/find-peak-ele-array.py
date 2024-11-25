@@ -23,6 +23,17 @@ class Solution:
             # print(start,mid,end)
         return start
 
+"""
+    alternatively
+    while start<end:
+        mid = (start+end)//2
+
+        if nums[mid+1]< nums[mid]:
+            end = mid
+        else: start = mid+1
+    return start
+"""
+
 
 ====================== Returning mid ======================
 # Runtime: 40 ms, faster than 94.93% of Python3 online submissions for Find Peak Element.
