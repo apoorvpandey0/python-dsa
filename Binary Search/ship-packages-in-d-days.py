@@ -1,5 +1,10 @@
 https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
 
+Mudde ke points: 
+Start tmpDays with 1
+update currSum after if
+condition ------>   currrSum + currWeight > capacity
+
 class Solution:
     def shipWithinDays(self, nums: List[int], days: int) -> int:
         lo = max(nums)  # Minimum capacity is at least the largest single package
@@ -9,21 +14,21 @@ class Solution:
         while lo <= hi:
             capacity = (lo + hi) // 2
             
-            tmpDays = 1  # Start with at least one day
+            tmpDays = 1  
             currSum = 0
 
           # Validate the capacity
             for weight in nums:
                 if currSum + weight > capacity:
-                    tmpDays += 1  # Need an additional day
-                    currSum = 0  # Reset current sum
+                    tmpDays += 1 
+                    currSum = 0  
                 currSum += weight
           
             # Make changes as per the number of days taken by assumed capacity
-            if tmpDays <= days:  # If the capacity works within the days limit
+            if tmpDays <= days:  
                 ans = min(ans, capacity)
                 hi = capacity - 1
-            else:  # Increase the minimum capacity
+            else:
                 lo = capacity + 1
         
         return ans
