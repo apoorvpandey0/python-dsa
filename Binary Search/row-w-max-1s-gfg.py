@@ -35,3 +35,25 @@ class Solution:
 
 
 ==================================== Soln 2 ============================================
+GFG par same python code accept nahi hota - bekar platform issues islie JAVA code
+
+Time O ( R + C ) | space O( 1 )
+
+Mudde ka point: col variable is running the full length of a row only once!
+It stops at max 1 col index and starts further if a row with even mmore 1s comes along
+class Solution {
+    public int rowWithMax1s(int arr[][]) {
+        int ans = 0;
+        
+        int col = arr[0].length - 1;
+        
+        for(int r = 0; r<arr.length; r++){
+            
+            while( col>=0 && arr[r][col] == 1 ){
+                col-=1;
+                ans = r;
+            }
+        }
+        return ans;
+    }
+}
