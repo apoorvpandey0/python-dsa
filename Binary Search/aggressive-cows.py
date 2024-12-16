@@ -69,7 +69,29 @@ def aggressiveCows(nums, c):
 
 ======================================== Solution 3 - Optimized solution =================================
 
+Just added binary search to above logic
+def aggressiveCows(nums, c):
+    nums.sort()
+    ans = -1
+    lo = 1
+    hi = max(nums)-min(nums)
+    while lo<=hi:
+        minM = (lo+hi)//2
 
+        k = c - 1
+        prevCow = 0
+        for i in range(1,len(nums)):
+            if nums[i] - nums[prevCow] >= minM:
+                prevCow = i
+                k-=1
+                
+        if k<=0:    
+            ans = max(ans,minM)
+            lo = minM + 1
+        else:
+            hi = minM - 1
+
+    return ans
 
 
 
