@@ -2,9 +2,11 @@ https://www.geeksforgeeks.org/problems/longest-sub-array-with-sum-k0809/1
 
 class Solution:
     def lenOfLongestSubarr(self, nums, k):  
+
         ps = [0 for i in nums]
         
         
+        # This can be done in for loop?
         ps[0] = nums[0]
         for i in range(1,len(nums)):
             ps[i]  = ps[i-1] + nums[i]
@@ -15,7 +17,8 @@ class Solution:
         # values store the prefix sums value with their least index at which that sum occured
         values = {0:-1}
         for i,ele in enumerate(nums):
-            
+
+            # min is not required as it will automatically me minimum index
             if ps[i] in values: min(values[ps[i]],i)
             else: values[ps[i]] = i
             
