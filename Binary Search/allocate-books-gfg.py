@@ -41,6 +41,7 @@ class Solution:
 
 
 ===================== Optimized BS soln ====================
+# Submitted
 def findPages(nums: [int], n: int, m: int) -> int:
     if m>n: return -1
 
