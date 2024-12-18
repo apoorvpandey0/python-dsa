@@ -1,11 +1,42 @@
 https://www.naukri.com/code360/problems/allocate-books_1090540
 https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937
 
+# Re learn!
 
 
 ===================== Brute force ====================
+TLE
+# Validate the entire answers range
+class Solution:
+    
+    def findPages(self, nums, m):
 
+        if m>len(nums): return -1
+    
+        ans = float('inf')
+    
+        lo = max(nums)
+        hi = sum(nums)
+    
+        for maxPages in range(lo,hi+1):
+            tmpMax = float('-inf')
+            tmpSum = 0
+            
+            tmpK = 1
+            for ele in nums:
+                if tmpSum + ele > maxPages:
+                    tmpMax = max(tmpMax,tmpSum)
+                    tmpSum = 0
+                    tmpK+=1
+                tmpSum+=ele
+            
+            # print(maxPages,tmpK,tmpSum)
 
+            # idk why not tmpK ==m and the one below
+            if tmpK <= m:
+                ans = min(ans,maxPages)
+
+        return ans
 
 
 
