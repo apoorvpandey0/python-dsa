@@ -41,7 +41,37 @@ class Solution:
 
 
 ===================== Optimized BS soln ====================
+def findPages(nums: [int], n: int, m: int) -> int:
+    if m>n: return -1
 
+    ans = float('inf')
+
+    lo = max(nums)
+    hi = sum(nums)
+
+    while lo<=hi:
+        maxPages = (lo+hi)//2
+        tmpMax = float('-inf')
+        tmpSum = 0
+        
+        tmpK = 1
+        for ele in nums:
+            if tmpSum + ele > maxPages:
+                tmpMax = max(tmpMax,tmpSum)
+                tmpSum = 0
+                tmpK+=1
+            tmpSum+=ele
+        
+        # print(maxPages,tmpK,tmpSum)
+        
+        if tmpK<=m: 
+            hi = maxPages - 1
+            ans = min(ans,maxPages)
+        else: 
+            lo = maxPages+1
+            
+
+    return ans
 
 
 
