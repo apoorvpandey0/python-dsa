@@ -19,6 +19,9 @@ https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937
 Generate all combination of array splits into m parts, and find minM of all maxM sum of subarrays
 
 from itertools import combinations
+
+# TLE on all platforms hopefully correct logic
+# Time | Space - 
 class Solution:
     
     #Function to find minimum number of pages.
@@ -27,7 +30,9 @@ class Solution:
         if m>len(nums): return -1
     
         ans = float('inf')
-    
+
+        # Generate till m-1 combinations because it will give us end index of each subarray
+        # If we take m then we will get start of each subarray - complicated subs formation islie do m-1
         combs = combinations([i for i in range(len(nums))],m-1)
     
         subs = []
@@ -45,7 +50,8 @@ class Solution:
                     start = end + 1
                 maxM = max(maxM,tmp2Sum)
                 tmp.append(tmp2)
-            
+
+            # To account for IF last subarray getting missed
             if nums[start:]: 
                 tmp.append(nums[start:])
                 maxM = max(maxM,sum(nums[start:]))
