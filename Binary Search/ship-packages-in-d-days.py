@@ -14,6 +14,7 @@ class Solution:
         while lo <= hi:
             capacity = (lo + hi) // 2
             
+            # Think of this like at least one day will be required when counting with max capacity ships
             tmpDays = 1  
             currSum = 0
 
