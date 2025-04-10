@@ -42,20 +42,27 @@ class Solution:
 
 ===================== Optimized BS soln ====================
 # Submitted
+# Similar to capacity of ship question
 def findPages(nums: [int], n: int, m: int) -> int:
     if m>n: return -1
 
     ans = float('inf')
 
+    # The minimum max pages that can be assigned to any student is the largest book
     lo = max(nums)
+
+    # Maximum Max pages that can be assigned to a student can be sum of all books i.e. all books assigned to one
     hi = sum(nums)
 
     while lo<=hi:
         maxPages = (lo+hi)//2
         tmpMax = float('-inf')
         tmpSum = 0
-        
+
+        # At least one student gets all the books
         tmpK = 1
+
+        # Validate if we can distribute all books within maxPages limit, similar to capacity of ships question
         for ele in nums:
             if tmpSum + ele > maxPages:
                 tmpMax = max(tmpMax,tmpSum)
