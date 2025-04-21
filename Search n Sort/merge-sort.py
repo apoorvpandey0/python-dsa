@@ -30,6 +30,35 @@ def mergesort(arr):
     return merge(left,right)
 
 
+===================================== 2=====================================
+from typing import List
 
-# print(merge([4],[2]))
-print("Answer: ",mergesort([5,4,3,2,1]))
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+
+        def merge(nums1, nums2):
+            ans = []
+            m, n = 0, 0
+            while m < len(nums1) and n < len(nums2):
+                if nums1[m] < nums2[n]:
+                    ans.append(nums1[m])
+                    m += 1
+                else:
+                    ans.append(nums2[n])
+                    n += 1
+            ans.extend(nums1[m:])
+            ans.extend(nums2[n:])
+            return ans
+
+        def sort(i, j):
+            if i == j:
+                return [nums[i]]
+            mid = (i + j) // 2
+
+            # It's important to go from i-> mid and mid+1 -> end
+            # Else errors
+            left = sort(i, mid)
+            right = sort(mid + 1, j)
+            return merge(left, right)
+
+        return sort(0, len(nums) - 1)
