@@ -1,0 +1,36 @@
+https://leetcode.com/problems/sum-of-subarray-minimums/
+https://www.notion.so/2-Minimum-subarray-sum-1dc2a2f0bf46808ca836f51659259147
+
+
+# The number of sequences including index i is going to be equal to the number of sequences to the left of i times the number to the right. 
+# For both left and right we have to include the empty sequence.
+
+from collections import deque
+class Solution:
+    def sumSubarrayMins(self, nums: List[int]) -> int:
+        
+        # Finding prev smaller element
+        prev = [-1]*len(nums)
+        stack = deque()
+        for i,e in enumerate(nums):
+            while len(stack) and nums[stack[-1]] > e:
+                stack.pop()
+            prev[i] = i - stack[-1] if len(stack) else i + 1
+            stack.append(i)
+        # print(prev)
+        
+        # Finding next smaller element
+        nxt = [len(nums)]*len(nums)
+        stack = deque()
+        for i in range(len(nums)-1,-1,-1):
+            while len(stack) and nums[stack[-1]] >= nums[i]:
+                stack.pop()
+            nxt[i] = stack[-1] - i if len(stack) else len(nums) - i
+            stack.append(i)
+        # print(nxt)
+    
+        # calculate contribution of each element in the array
+        ans = 0
+        for i in range(len(nums)):
+            ans += nums[i] * ( prev[i] * nxt[i] )
+        return ans % (10**9+7)
