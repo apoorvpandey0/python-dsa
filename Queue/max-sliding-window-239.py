@@ -1,6 +1,36 @@
 import heapq
 from collections import deque
 # using Monotonically decreasing Queue
+
+======== Soln variant 1 ==========
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        result = []
+        queue = deque()  # Stores indices, not values
+        
+        for i, num in enumerate(nums):
+            # Remove elements out of window range
+            while queue and queue[0] <= i - k:
+                queue.popleft()
+            
+            # Remove smaller elements from back
+            while queue and nums[queue[-1]] < num:
+                queue.pop()
+            
+            queue.append(i)
+            
+            # Add result once we have a full window
+            # at i == k-1 we will have our first fill window
+            if i >= k - 1:
+                result.append(nums[queue[0]])
+        
+        return result
+
+
+
+
+
+========= Soln variant 2 =========
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         queue = deque()
